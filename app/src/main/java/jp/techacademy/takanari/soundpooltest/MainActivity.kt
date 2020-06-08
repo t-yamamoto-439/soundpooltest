@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity(){
         C, D, E,F,G,A,B,X,Y,Z,P,N
     }
 
+    var i = 0
+
     var v = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,6 +96,11 @@ class MainActivity : AppCompatActivity(){
             soundList8.add(
                 SoundDto(
                     Sound.SOUND_D2
+                )
+            )
+            soundList0.add(
+                SoundDto(
+                    Sound.SOUND_N
                 )
             )
         }
@@ -222,90 +229,103 @@ class MainActivity : AppCompatActivity(){
 
 
     private val mOnstartClickListener = View.OnClickListener {
+        //タイマーが動いてない時
+        if (mTimer == null) {
+            //mTimer変数を作成　＊倍速対策
+            mTimer = Timer()
+            //何かある時強制的に実行的な？　！！はisNotEmptyがあって、nullの時の条件文で実行可能になってるらしい
+            mTimer!!.schedule(object : TimerTask() {
+                //多分runメソッド？が動いてる時
+                override fun run() {
+                    //何がしたいか ＊今回は自動めくり
+                    mHandler.post {
+//                        for (i in 0 until soundList1.size) {
+                        i+=1
+                            if (soundList1[i].addflag == true) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_D)
+//                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_N)
+                            }
+                            else if (soundList1[i].addflag == false) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_N)
+                            }
+//                        }
 
-            for (i in 0 until soundList1.size ) {
-                if (soundList1[i].addflag == true) {
-                Sound.getInstance(this).playSound(Sound.SOUND_D)
-            }
-                else {
-                    Handler().postDelayed({
-
-                        Log.d("kotlintest","")
-
-                    }, 500)
+//                        for (i in 0 until soundList2.size) {
+                            if (soundList2[i].addflag == true) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_Re)
+                            }
+                            else if (soundList2[i].addflag == false) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_N)
+                            }
+//                        }
+//
+//                        for (i in 0 until soundList3.size) {
+                            if (soundList3[i].addflag == true) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_M)
+                            }
+                            else if (soundList3[i].addflag == false) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_N)
+                            }
+//                        }
+//
+//                        for (i in 0 until soundList4.size) {
+                            if (soundList4[i].addflag == true) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_F)
+                            }
+                            else if (soundList4[i].addflag == false) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_N)
+                            }
+//                        }
+//
+//                        for (i in 0 until soundList5.size) {
+                            if (soundList5[i].addflag == true) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_So)
+                            }
+                            else if (soundList5[i].addflag == false) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_N)
+                            }
+//                        }
+//
+//                        for (i in 0 until soundList6.size) {
+                            if (soundList6[i].addflag == true) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_Ra)
+                            }
+                            else if (soundList6[i].addflag == false) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_N)
+                            }
+//                        }
+//
+//                        for (i in 0 until soundList7.size) {
+//
+                            if (soundList7[i].addflag == true) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_Si)
+                            }
+                            else if (soundList7[i].addflag == false) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_N)
+                            }
+//
+//                        }
+//
+//                        for (i in 0 until soundList8.size) {
+                            if (soundList8[i].addflag == true) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_D2)
+                            }
+                            else if (soundList8[i].addflag == false) {
+                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_N)
+                            }
+//                        }
+                    }
                 }
-                if (soundList2[i].addflag == true) {
-                    Sound.getInstance(this).playSound(Sound.SOUND_Re)
-                }
-                else {
-                    Handler().postDelayed({
-
-                        Log.d("kotlintest","")
-
-                    }, 500)
-                }
-                if (soundList3[i].addflag == true) {
-                    Sound.getInstance(this).playSound(Sound.SOUND_M)
-                }
-                else {
-                    Handler().postDelayed({
-
-                        Log.d("kotlintest","")
-
-                    }, 500)
-                }
-                if (soundList4[i].addflag == true) {
-                    Sound.getInstance(this).playSound(Sound.SOUND_F)
-                }
-                else {
-                    Handler().postDelayed({
-
-                        Log.d("kotlintest","")
-
-                    }, 500)
-                }
-                if (soundList5[i].addflag == true) {
-                    Sound.getInstance(this).playSound(Sound.SOUND_So)
-                }
-                else {
-                    Handler().postDelayed({
-
-                        Log.d("kotlintest","")
-
-                    }, 500)
-                }
-                if (soundList6[i].addflag == true) {
-                    Sound.getInstance(this).playSound(Sound.SOUND_Ra)
-                }
-                else {
-                    Handler().postDelayed({
-
-                        Log.d("kotlintest","")
-
-                    }, 500)
-                }
-                if (soundList7[i].addflag == true) {
-                    Sound.getInstance(this).playSound(Sound.SOUND_Si)
-                }
-                else {
-                    Handler().postDelayed({
-
-                        Log.d("kotlintest","")
-
-                    }, 500)
-                }
-                if (soundList8[i].addflag == true) {
-                    Sound.getInstance(this).playSound(Sound.SOUND_D2)
-                }
-                else {
-                    Handler().postDelayed({
-
-                        Log.d("kotlintest","")
-
-                    }, 500)
-                }
-
+            }, 500, 500) // 最初に始動させるまで 100ミリ秒、ループの間隔を 2000ミリ秒 に設定
+            //動いている時
+        } else if (mTimer != null) {
+            mTimer!!.cancel()
+            //ヌルにする
+            mTimer = null
+            i = 0
         }
     }
+
+
 
 }

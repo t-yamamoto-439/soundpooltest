@@ -23,6 +23,7 @@ class Sound constructor(context: Context) {
         var SOUND_Ra = 0
         var SOUND_Si = 0
         var SOUND_D2 = 0
+        var SOUND_N = 0
 
 
         var INSTANCE:Sound? = null
@@ -56,7 +57,7 @@ class Sound constructor(context: Context) {
         }.build()
 
         soundPool = SoundPool.Builder().apply {
-            setMaxStreams(6)
+            setMaxStreams(9)
             setAudioAttributes(attributes)
         }.build()
     }
@@ -77,6 +78,7 @@ class Sound constructor(context: Context) {
             SOUND_Ra = it.load(context, R.raw.ra, 1)
             SOUND_Si = it.load(context, R.raw.si, 1)
             SOUND_D2 = it.load(context, R.raw.do2, 1)
+            SOUND_N = it.load(context, R.raw.n, 1)
 
         }
     }
@@ -84,7 +86,7 @@ class Sound constructor(context: Context) {
 
     fun playSound(soundID:Int) {
         soundPool?.let{
-            it.play(soundID, 1.0f, 1.0f, 1, 0, 1.0f)
+            it.play(soundID, 1.0f, 1.0f, 1, 0, 2.0f)
             println("サウンド再生")
         }
     }
