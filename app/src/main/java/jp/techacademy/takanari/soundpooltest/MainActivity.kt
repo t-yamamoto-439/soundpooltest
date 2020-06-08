@@ -240,7 +240,6 @@ class MainActivity : AppCompatActivity(){
                     //何がしたいか ＊今回は自動めくり
                     mHandler.post {
 //                        for (i in 0 until soundList1.size) {
-                        i+=1
                             if (soundList1[i].addflag == true) {
                                 Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_D)
 //                                Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_N)
@@ -313,7 +312,14 @@ class MainActivity : AppCompatActivity(){
                             else if (soundList8[i].addflag == false) {
                                 Sound.getInstance(this@MainActivity).playSound(Sound.SOUND_N)
                             }
-//                        }
+//
+
+                        i+=1
+                        if (i == 40){
+                            mTimer!!.cancel()
+                            mTimer = null
+                            i = 0
+                        }
                     }
                 }
             }, 500, 500) // 最初に始動させるまで 100ミリ秒、ループの間隔を 2000ミリ秒 に設定
